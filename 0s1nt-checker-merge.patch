@@ -1,0 +1,409 @@
+From 78c5ebf5c3cf4d105049cede9020565363005fc7 Mon Sep 17 00:00:00 2001
+From: "google-labs-jules[bot]"
+ <161369871+google-labs-jules[bot]@users.noreply.github.com>
+Date: Sun, 22 Feb 2026 12:54:58 +0000
+Subject: [PATCH] Add Obsidian prompts from background-check-tool
+
+---
+ prompts/Clip Web Page.md              | 55 +++++++++++++++++++++
+ prompts/Clip YouTube Transcript.md    | 69 +++++++++++++++++++++++++++
+ prompts/Emojify.md                    | 13 +++++
+ prompts/Explain like I am 5.md        | 12 +++++
+ prompts/Fix grammar and spelling.md   |  8 ++++
+ prompts/Generate glossary.md          |  8 ++++
+ prompts/Generate table of contents.md |  8 ++++
+ prompts/Make longer.md                | 12 +++++
+ prompts/Make shorter.md               | 12 +++++
+ prompts/Remove URLs.md                |  8 ++++
+ prompts/Rewrite as tweet thread.md    | 18 +++++++
+ prompts/Rewrite as tweet.md           | 12 +++++
+ prompts/Simplify.md                   |  8 ++++
+ prompts/Summarize.md                  |  8 ++++
+ prompts/Translate to Chinese.md       | 12 +++++
+ 15 files changed, 263 insertions(+)
+ create mode 100644 prompts/Clip Web Page.md
+ create mode 100644 prompts/Clip YouTube Transcript.md
+ create mode 100644 prompts/Emojify.md
+ create mode 100644 prompts/Explain like I am 5.md
+ create mode 100644 prompts/Fix grammar and spelling.md
+ create mode 100644 prompts/Generate glossary.md
+ create mode 100644 prompts/Generate table of contents.md
+ create mode 100644 prompts/Make longer.md
+ create mode 100644 prompts/Make shorter.md
+ create mode 100644 prompts/Remove URLs.md
+ create mode 100644 prompts/Rewrite as tweet thread.md
+ create mode 100644 prompts/Rewrite as tweet.md
+ create mode 100644 prompts/Simplify.md
+ create mode 100644 prompts/Summarize.md
+ create mode 100644 prompts/Translate to Chinese.md
+
+diff --git a/prompts/Clip Web Page.md b/prompts/Clip Web Page.md
+new file mode 100644
+index 0000000..59c642c
+--- /dev/null
++++ b/prompts/Clip Web Page.md
+@@ -0,0 +1,55 @@
++---
++copilot-command-context-menu-enabled: false
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1140
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++
++Based on the web page content provided in the context (from Obsidian Web Clipper or Web Viewer), generate a complete Obsidian note.
++
++IMPORTANT: If no web page context is found, remind the user to:
++1. Open a web page in Web Viewer (or use @ to select a web tab)
++2. Or open a note clipped by Obsidian Web Clipper
++3. Then use this command again
++
++Generate the note with this exact structure:
++
++---
++title: "<page title>"
++source: "<page url>"
++description: "<brief description>"
++tags:
++  - "clippings"
++---
++
++## Summary
++
++<Brief 2-3 paragraph summary of the page content>
++
++## Key Takeaways
++
++<List 5-8 key takeaways as bullet points>
++
++## Mindmap
++
++CRITICAL Mermaid mindmap syntax rules - MUST follow exactly:
++- Root node format: root(Topic Name) - use round brackets, NO double brackets
++- Child nodes: just plain text, no brackets needed
++- Do NOT use quotes, parentheses, brackets, or any special characters in text
++- Keep all node text short and simple - max 3-4 words per node
++
++```mermaid
++mindmap
++  root(Main Topic)
++    Theme One
++      Detail
++    Theme Two
++      Detail
++```
++
++## Notable Quotes
++
++<List 3-5 notable quotes from the content, if any>
++
++Return only the markdown content without any explanations or comments.
+\ No newline at end of file
+diff --git a/prompts/Clip YouTube Transcript.md b/prompts/Clip YouTube Transcript.md
+new file mode 100644
+index 0000000..917d09a
+--- /dev/null
++++ b/prompts/Clip YouTube Transcript.md
+@@ -0,0 +1,69 @@
++---
++copilot-command-context-menu-enabled: false
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1130
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++
++Based on the YouTube video information and transcript provided in the context, generate a complete Obsidian note in the following format.
++
++IMPORTANT: If no YouTube video context is found, remind the user to:
++1. Open a YouTube video in Web Viewer (or use @ to select a YouTube web tab)
++2. Then use this command again
++
++Generate the note with this exact structure:
++
++---
++title: "<video title>"
++description: "<first 200 chars of description>"
++channel: "<channel name>"
++url: "<video url>"
++duration: "<duration>"
++published: <upload date in YYYY-MM-DD format>
++thumbnailUrl: "<YouTube thumbnail URL: i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg with https protocol>"
++genre:
++  - "<genre>"
++watched:
++---
++![<video title>](<video url>)
++
++> [!summary]- Description
++> <full video description, preserve line breaks>
++
++## Summary
++
++<Brief 2-3 paragraph summary of the video content>
++
++## Key Takeaways
++
++<List 5-8 key takeaways as bullet points>
++
++## Mindmap
++
++CRITICAL Mermaid mindmap syntax rules - MUST follow exactly:
++- Root node format: root(Topic Name) - use round brackets, NO double brackets
++- Child nodes: just plain text, no brackets needed
++- Do NOT use quotes, parentheses, brackets, or any special characters in text
++- Do NOT use icons or emojis
++- Keep all node text short and simple - max 3-4 words per node
++- Use only letters, numbers, and spaces
++
++Example of CORRECT syntax:
++```mermaid
++mindmap
++  root(Video Main Topic)
++    First Theme
++      Detail one
++      Detail two
++    Second Theme
++      Detail three
++    Third Theme
++```
++
++## Notable Quotes
++
++<List 5-10 notable quotes from the transcript. Format each as:>
++- [<timestamp>: <quote text>](<video_url>&t=<seconds>s)
++
++Return only the markdown content without any explanations or comments.
+\ No newline at end of file
+diff --git a/prompts/Emojify.md b/prompts/Emojify.md
+new file mode 100644
+index 0000000..e26102e
+--- /dev/null
++++ b/prompts/Emojify.md
+@@ -0,0 +1,13 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1050
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Add relevant emojis to enhance {}. Follow these rules:
++    1. Insert emojis at natural breaks in the text
++    2. Never place two emojis next to each other
++    3. Keep all original text unchanged
++    4. Choose emojis that match the context and tone
++    Return only the emojified text.
+\ No newline at end of file
+diff --git a/prompts/Explain like I am 5.md b/prompts/Explain like I am 5.md
+new file mode 100644
+index 0000000..bf1c048
+--- /dev/null
++++ b/prompts/Explain like I am 5.md
+@@ -0,0 +1,12 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1040
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Explain {} in simple terms that a 5-year-old would understand:
++    1. Use basic vocabulary
++    2. Include simple analogies
++    3. Break down complex concepts
++    Return only the simplified explanation.
+\ No newline at end of file
+diff --git a/prompts/Fix grammar and spelling.md b/prompts/Fix grammar and spelling.md
+new file mode 100644
+index 0000000..d0e7bc5
+--- /dev/null
++++ b/prompts/Fix grammar and spelling.md
+@@ -0,0 +1,8 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1000
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Fix the grammar and spelling of {}. Preserve all formatting, line breaks, and special characters. Do not add or remove any content. Return only the corrected text.
+\ No newline at end of file
+diff --git a/prompts/Generate glossary.md b/prompts/Generate glossary.md
+new file mode 100644
+index 0000000..6f2457c
+--- /dev/null
++++ b/prompts/Generate glossary.md
+@@ -0,0 +1,8 @@
++---
++copilot-command-context-menu-enabled: false
++copilot-command-slash-enabled: false
++copilot-command-context-menu-order: 1090
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Create a glossary of important terms, concepts, and phrases from {}. Format each entry as "Term: Definition". Sort entries alphabetically. Return only the glossary.
+\ No newline at end of file
+diff --git a/prompts/Generate table of contents.md b/prompts/Generate table of contents.md
+new file mode 100644
+index 0000000..37a2164
+--- /dev/null
++++ b/prompts/Generate table of contents.md
+@@ -0,0 +1,8 @@
++---
++copilot-command-context-menu-enabled: false
++copilot-command-slash-enabled: false
++copilot-command-context-menu-order: 1080
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Generate a hierarchical table of contents for {}. Use appropriate heading levels (H1, H2, H3, etc.). Include page numbers if present. Return only the table of contents.
+\ No newline at end of file
+diff --git a/prompts/Make longer.md b/prompts/Make longer.md
+new file mode 100644
+index 0000000..8c4abc3
+--- /dev/null
++++ b/prompts/Make longer.md
+@@ -0,0 +1,12 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1070
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Expand {} to twice its length by:
++    1. Adding relevant details and examples
++    2. Elaborating on key points
++    3. Maintaining the original tone and style
++    Return only the expanded text.
+\ No newline at end of file
+diff --git a/prompts/Make shorter.md b/prompts/Make shorter.md
+new file mode 100644
+index 0000000..ca6e74d
+--- /dev/null
++++ b/prompts/Make shorter.md
+@@ -0,0 +1,12 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1060
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Reduce {} to half its length while preserving these elements:
++    1. Main ideas and key points
++    2. Essential details
++    3. Original tone and style
++    Return only the shortened text.
+\ No newline at end of file
+diff --git a/prompts/Remove URLs.md b/prompts/Remove URLs.md
+new file mode 100644
+index 0000000..729b0fd
+--- /dev/null
++++ b/prompts/Remove URLs.md
+@@ -0,0 +1,8 @@
++---
++copilot-command-context-menu-enabled: false
++copilot-command-slash-enabled: false
++copilot-command-context-menu-order: 1100
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Remove all URLs from {}. Preserve all other content and formatting. URLs may be in various formats (http, https, www). Return only the text with URLs removed.
+\ No newline at end of file
+diff --git a/prompts/Rewrite as tweet thread.md b/prompts/Rewrite as tweet thread.md
+new file mode 100644
+index 0000000..58c0b66
+--- /dev/null
++++ b/prompts/Rewrite as tweet thread.md
+@@ -0,0 +1,18 @@
++---
++copilot-command-context-menu-enabled: false
++copilot-command-slash-enabled: false
++copilot-command-context-menu-order: 1120
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Convert {} into a Twitter thread following these rules:
++    1. Each tweet must be under 240 characters
++    2. Start with "THREAD START" on its own line
++    3. Separate tweets with "
++
++---
++
++"
++    4. End with "THREAD END" on its own line
++    5. Make content engaging and clear
++    Return only the formatted thread.
+\ No newline at end of file
+diff --git a/prompts/Rewrite as tweet.md b/prompts/Rewrite as tweet.md
+new file mode 100644
+index 0000000..963cf86
+--- /dev/null
++++ b/prompts/Rewrite as tweet.md
+@@ -0,0 +1,12 @@
++---
++copilot-command-context-menu-enabled: false
++copilot-command-slash-enabled: false
++copilot-command-context-menu-order: 1110
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Rewrite {} as a single tweet with these requirements:
++    1. Maximum 280 characters
++    2. Use concise, impactful language
++    3. Maintain the core message
++    Return only the tweet text.
+\ No newline at end of file
+diff --git a/prompts/Simplify.md b/prompts/Simplify.md
+new file mode 100644
+index 0000000..095a64f
+--- /dev/null
++++ b/prompts/Simplify.md
+@@ -0,0 +1,8 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1030
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Simplify {} to a 6th-grade reading level (ages 11-12). Use simple sentences, common words, and clear explanations. Maintain the original key concepts. Return only the simplified text.
+\ No newline at end of file
+diff --git a/prompts/Summarize.md b/prompts/Summarize.md
+new file mode 100644
+index 0000000..783417e
+--- /dev/null
++++ b/prompts/Summarize.md
+@@ -0,0 +1,8 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1020
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Create a bullet-point summary of {}. Each bullet point should capture a key point. Return only the bullet-point summary.
+\ No newline at end of file
+diff --git a/prompts/Translate to Chinese.md b/prompts/Translate to Chinese.md
+new file mode 100644
+index 0000000..8c0c23e
+--- /dev/null
++++ b/prompts/Translate to Chinese.md
+@@ -0,0 +1,12 @@
++---
++copilot-command-context-menu-enabled: true
++copilot-command-slash-enabled: true
++copilot-command-context-menu-order: 1010
++copilot-command-model-key: ""
++copilot-command-last-used: 0
++---
++Translate {} into Chinese:
++    1. Preserve the meaning and tone
++    2. Maintain appropriate cultural context
++    3. Keep formatting and structure
++    Return only the translated text.
+\ No newline at end of file
+--
+2.52.0
